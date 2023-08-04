@@ -7,6 +7,7 @@ import {
   getDisplayUserCrud,
   getEditUserCrud,
   putUserCrud,
+  deleteUserCrud,
 } from "../controllers/homeController";
 
 let router = express.Router();
@@ -25,6 +26,8 @@ let initWebRoutes = (app) => {
   app.get("/edit-user-crud", getEditUserCrud);
 
   app.post("/put-user-crud", putUserCrud);
+
+  app.get("/delete-user-crud", deleteUserCrud);
 
   return app.use("/", router);
 };

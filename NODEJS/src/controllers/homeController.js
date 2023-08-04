@@ -1,3 +1,4 @@
+import { query } from "express";
 import db from "../models";
 import crudServices from "../services/crudServices";
 import {
@@ -5,6 +6,7 @@ import {
   getDisplayUser,
   getUserInfoById,
   updateUserData,
+  deleteUserById,
 } from "../services/crudServices";
 
 let getHomePage = async (req, res) => {
@@ -60,6 +62,15 @@ let putUserCrud = async (req, res) => {
   });
 };
 
+let deleteUserCrud = async (req, res) => {
+  let id = req.query.id;
+  if (id) {
+    return res.send("ddd");
+  } else {
+    return res.send("User Not Found");
+  }
+};
+
 module.exports = {
   getHomePage,
   getAboutPage,
@@ -68,4 +79,5 @@ module.exports = {
   getDisplayUserCrud,
   getEditUserCrud,
   putUserCrud,
+  deleteUserCrud,
 };
