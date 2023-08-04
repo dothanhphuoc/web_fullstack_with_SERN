@@ -22,8 +22,6 @@ let createNewUser = (data) => {
       reject(e);
     }
   });
-
-  console.log(hashPasswordFromBcrypt);
 };
 
 let hashUserPassword = (password) => {
@@ -37,6 +35,20 @@ let hashUserPassword = (password) => {
   });
 };
 
+let getDisplayUser = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = await db.User.findAll({
+        raw: true /** config display user */,
+      });
+      resolve(users);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   createNewUser,
+  getDisplayUser,
 };
