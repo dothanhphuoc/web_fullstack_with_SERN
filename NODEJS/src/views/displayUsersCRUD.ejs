@@ -12,6 +12,14 @@
             border: 1px solid #000;
             border-collapse: collapse;
         }
+
+        .btn {
+            border: 1px solid #000;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 1px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +29,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
 
         <% listUser.forEach((user) => { %>
@@ -29,6 +38,10 @@
                 <td><%= user.firstName %></td>
                 <td><%= user.lastName %></td>
                 <td><%= user.address %></td>
+                <td style="text-align: center; padding: 4px;">
+                    <a class="btn" href="/edit-user-crud?id=<%= user.id%>">Edit</a>
+                    <a class="btn">Delete</a>
+                </td>
             </tr>
         <% }) %>
     </table>

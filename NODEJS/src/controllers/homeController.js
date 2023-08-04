@@ -1,6 +1,11 @@
 import db from "../models";
 import crudServices from "../services/crudServices";
-import { createNewUser, getDisplayUser } from "../services/crudServices";
+import {
+  createNewUser,
+  getDisplayUser,
+  getUserInfoById,
+  updateUserData,
+} from "../services/crudServices";
 
 let getHomePage = async (req, res) => {
   try {
@@ -27,7 +32,32 @@ let postCrud = async (req, res) => {
 
 let getDisplayUserCrud = async (req, res) => {
   let listUser = await getDisplayUser();
-  return res.render("displayUsersCRUD.ejs", {listUser: listUser});
+  return res.render("displayUsersCRUD.ejs", { listUser: listUser });
+};
+
+let getEditUserCrud = async (req, res) => {
+  let userId = req.query.id;
+
+  if (userId) {
+    let userData = await getUserInfoById(userId);
+
+    //check user data not found
+    if (userData) {
+    }
+
+    return res.render("editUserCRUD.ejs", { userData: userData });
+  } else {
+    return res.send("User Not Found");
+  }
+};
+
+let putUserCrud = async (req, res) => {
+  let dataUser = req.body;
+  let allUser = await updateUserData(dataUser);
+
+  return res.render("displayUsersCRUD.ejs", {
+    listUser: allUser,
+  });
 };
 
 module.exports = {
@@ -36,4 +66,6 @@ module.exports = {
   getCrud,
   postCrud,
   getDisplayUserCrud,
+  getEditUserCrud,
+  putUserCrud,
 };
