@@ -101,7 +101,7 @@ let deleteUserById = (id) => {
       });
 
       if (user) {
-        await user.destroy(allUsers);
+        await user.destroy();
       }
       resolve();
     } catch (e) {

@@ -65,7 +65,8 @@ let putUserCrud = async (req, res) => {
 let deleteUserCrud = async (req, res) => {
   let id = req.query.id;
   if (id) {
-    return res.send("ddd");
+    await deleteUserById(id);
+    return res.send("Delete Success!");
   } else {
     return res.send("User Not Found");
   }
